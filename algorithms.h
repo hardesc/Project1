@@ -16,6 +16,12 @@ void algorithm(int *arr, int size, int option, int version, FILE *file);
 
 double algorithm_1(int *arr, int size, int print_option, FILE *file);
 
+double algorithm_2(int *arr, int size, int print_option, FILE *file);
+
+double algorithm_3(int *arr, int size, int print_option, FILE *file);
+
+double algorithm_4(int *arr, int size, int print_option, FILE *file);
+
 void print_results(int *arr, int size, int print_option, FILE *file, int max, int beg, int end);
 
 #endif /* defined(__MMS__algorithms__) */

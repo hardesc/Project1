@@ -1,11 +1,9 @@
 /*
- NOTE:
  ALGORITHM 1 IS COMPLETE
- 
  GROUP 16, SCROLL TO THE BOTTOM TO SEE WHERE THE ALGORITHM DEFINITIONS ARE
  YOU DON'T NEED TO WORRY ABOUT ANY OF THE OTHER CODE, LET ME DEAL WITH IT
  JUST PUT YOUR CODE IN THE DESIGNATED FUNCTION. LET ME KNOW IF YOU NEED WITH IT.
- */
+*/
 
 #include "algorithms.h"
 #include <stdlib.h>
@@ -37,6 +35,7 @@ void algorithm(int *arr, int size, int print_option, int version, FILE *file) {
         if (print_option == 2) {
 
             fprintf(file, "%d.)\t\t", index);//print numbering for rows
+            
             arr = (int *)malloc(sizeof(int) * size);
             
             for (i = 0; i < size; i++) {
@@ -52,8 +51,8 @@ void algorithm(int *arr, int size, int print_option, int version, FILE *file) {
                 total += t;
                 break;
             case 2 :
-                //t = algorithm_2(arr, size, print_option, file);
-                //total += t;
+                t = algorithm_2(arr, size, print_option, file);
+                total += t;
                 break;
             case 3 :
                 //t = algorithm_3(arr, size, print_option, file);
@@ -73,7 +72,7 @@ void algorithm(int *arr, int size, int print_option, int version, FILE *file) {
     }while (repetitions > 0);
     
     if (print_option == 2) {
-        fprintf(file, "\nAverage Time (s): %f\n\n", total / 10);
+        fprintf(file, "\n\nAverage Time (s): %f\n", total / 10);
     }
 
 }
@@ -163,18 +162,30 @@ double algorithm_1(int *arr, int size, int print_option, FILE *file) {
 
 double algorithm_2(int *arr, int size, int print_option, FILE *file) {
     
-    int max, beg, end;
-    
+    int i, j, s, temp, max, beg, end;
     clock_t T1, T2;
     double time;
     
+    max = -32767;
+    beg = 0;
+    end = size - 1;
+    
     T1 = clock();//start timer
     
-    /***************************************************
-
-                ALGORITHM 2 CODE GOES HERE
-     
-     *****************************************************/
+    //beginning point incrementer
+    for (i = 0; i < size; i++) {
+        s = 0;
+        //end point incrementer
+        for (j = i; j < size; j++) {
+            temp = arr[j];//for debugging
+            s += arr[j];
+            if (s > max) {
+                max = s;
+                end = j;
+                beg = i;
+            }
+        }
+    }
     
     
     T2 = clock();//end timer
