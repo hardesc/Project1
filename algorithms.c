@@ -55,12 +55,12 @@ void algorithm(int *arr, int size, int print_option, int version, FILE *file) {
                 total += t;
                 break;
             case 3 :
-                //t = algorithm_3(arr, size, print_option, file);
-                //total += t;
+                t = algorithm_3(arr, size, print_option, file);
+                total += t;
                 break;
             case 4 :
-                //t = algorithm_4(arr, size, print_option, file);
-                //total += t;
+                t = algorithm_4(arr, size, print_option, file);
+                total += t;
                 break;
         }
         repetitions--;
