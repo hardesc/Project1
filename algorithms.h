@@ -24,4 +24,6 @@ double algorithm_4(int *arr, int size, int print_option, FILE *file);
 
 void print_results(int *arr, int size, int print_option, FILE *file, int max, int beg, int end);
 
+int alg3(int * array, int array_size, int left_or_right);
+
 #endif /* defined(__MMS__algorithms__) */
