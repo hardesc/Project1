@@ -5,11 +5,12 @@
  JUST PUT YOUR CODE IN THE DESIGNATED FUNCTION. LET ME KNOW IF YOU NEED WITH IT.
 */
 
-int *left_max_index, left_max_size, *right_max_index, right_max_size, *max_index, max_size, max_sum;
+int *left_max_index, left_max_size, *right_max_index, right_max_size, *max_index, max_size, max_sum, *low, *high;
 
 #include "algorithms.h"
 #include <stdlib.h>
 #include <time.h>
+#include <limits.h>
 
 /*
  This function handles which function is going to be called and passes the array, size, print_option, and version on to the appropriate functions. 
@@ -66,8 +67,8 @@ void algorithm(int *arr, int size, int print_option, int version, FILE *file) {
                 total += t;
                 break;
             case 4 :
-                //t = algorithm_4(arr, size, print_option, file);
-                //total += t;
+                t = algorithm_4(arr, size, print_option, file);
+                total += t;
                 break;
         }
         repetitions--;
@@ -404,10 +405,43 @@ double algorithm_4(int *arr, int size, int print_option, FILE *file) {
      
      *****************************************************/
     
+    max = alg4(arr, &size);
     
     T2 = clock();//end timer
     time = (double)(T2 - T1) / CLOCKS_PER_SEC;//get total time
+    
+    beg = *low;
+    end = *high;
+    
     print_results(arr, size, print_option, file, max, beg, end);
     
     return time;
 }
+
+int alg4(int * array, int * array_size)
+{
+    int max_sum, ending_here_sum, j, *ending_here_low, *ending_here_high;
+    
+    ending_here_low = &array[0];
+    max_sum = INT_MIN;
+    ending_here_sum = INT_MIN;
+    for(j=0;j<*array_size;j++)
+    {
+        ending_here_high = &array[j];
+        if(ending_here_sum > 0)
+            ending_here_sum = ending_here_sum + array[j];
+        else
+        {
+            ending_here_low = &array[j];
+            ending_here_sum = array[j];
+        }
+        if(ending_here_sum > max_sum)
+        {
+            max_sum = ending_here_sum;
+            low = ending_here_low;
+            high = ending_here_high;
+        }
+    }
+    return max_sum;
+} //end alg4()
+
